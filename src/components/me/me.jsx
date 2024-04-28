@@ -36,7 +36,7 @@ export default function Me() {
       </div>
 
       <footer>
-        <ul className="flex gap-4">
+        <ul className="flex flex-wrap gap-4">
           {meData.socials.map((social) => (
             <li key={social.name}>
               <ExternalLink title={`Ir al ${social.name} de ${meData.name}`} href={social.url}>
