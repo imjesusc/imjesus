@@ -14,7 +14,7 @@ const config = {
       center: true,
       padding: '1rem',
       screens: {
-        tabletlg: '1024px'
+        tabletlg: '700px'
       }
     },
     extend: {

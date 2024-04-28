@@ -7,13 +7,13 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended'
   ],
-  ignorePatterns: ['dist', 'vite.config.js', '.eslintrc.cjs'],
+  ignorePatterns: ['dist', 'vite.config.js', 'tailwind.config.js', '.eslintrc.cjs'],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: '18.2' } },
   plugins: ['react-refresh'],
   rules: {
     'react/jsx-no-target-blank': 'off',
-    'prop-types': 'off',
+    'react/prop-types': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }]
   }
 }
