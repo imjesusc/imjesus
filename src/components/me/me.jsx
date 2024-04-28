@@ -1,61 +1,67 @@
-import { Tooltip } from '@nextui-org/tooltip'
-import { ExternalLink } from '../ui/external-link'
+import { useCopy } from '@/hooks/useCopy'
+import { cn } from '@/utilities/cn'
+import { CheckIcon } from '@radix-ui/react-icons'
+import ExternalLink from '../ui/external-link'
+import { Mdx } from '../ui/mdx'
 
 const meData = {
   name: 'Jesús Cerdán',
-  role: 'Desarrollador Frontend',
-  aboutMe: `Hola, mi nombre es Jesús, soy desarrollador Front-end.\nEspecializado en el desarrollo de interfaces de aplicaciones web centradas en el usuario,\ncombinando el minimalismo con funcionalidad.`,
+  role: 'Desarrollador Front-end',
+  aboutMe: `Hola, mi nombre es Jesús, soy desarrollador <a target="_blank" href="https://github.com/imjesusc">Front-end</a> . Especializado en el desarrollo de interfaces de aplicaciones web centradas en el usuario, combinando el minimalismo con funcionalidad.`,
+  email: 'imjesus.ds@gmail.com',
   socials: [
     {
-      name: 'Frontend Developer',
-      url: '#'
-    },
-    {
       name: 'Github',
-      url: '#'
+      url: 'https://github.com/imjesusc'
     },
     {
       name: 'LinkedIn',
-      url: '#'
-    },
-    {
-      name: 'Correo Electrónico',
-      url: '#'
+      url: 'https://www.linkedin.com/in/imjesus/'
     }
   ]
 }
 
 export default function Me() {
+  const { isCopy, handleCopy } = useCopy()
+
   return (
     <section className="flex flex-col gap-4">
       <header>
-        <h1 className="text-lg font-semibold ">{meData.name}</h1>
+        <h1 className="text-base font-medium">{meData.name}</h1>
         <h2 className="text-sm text-muted-foreground">{meData.role}</h2>
       </header>
 
       <div>
-        <p className="max-w-[60ch] text-pretty font-geist text-base">{meData.aboutMe}</p>
+        <Mdx className="max-w-[60ch] text-pretty  text-base leading-7 text-foreground">{meData.aboutMe}</Mdx>
       </div>
 
       <footer>
         <ul className="flex gap-4">
           {meData.socials.map((social) => (
             <li key={social.name}>
-              <Tooltip
-                showArrow={true}
-                classNames={{
-                  base: [
-                    // arrow color
-                    'before:bg-neutral-400 '
-                  ],
-                  content: ['px-3 py-1.5 shadow-xl', 'text-sm bg-background border rounded-lg']
-                }}
-                content={`Ir a mi ${social.name === 'Frontend Developer' ? 'Curriculum' : social.name}`}
-              >
-                <ExternalLink href={social.url}>{social.name}</ExternalLink>
-              </Tooltip>
+              <ExternalLink title={`Ir al ${social.name} de ${meData.name}`} href={social.url}>
+                {social.name}
+              </ExternalLink>
             </li>
           ))}
+
+          <li>
+            <button
+              className={cn(
+                'relative underline decoration-muted-foreground/50 decoration-1 ',
+                'underline-offset-[3px] hover:text-muted-foreground'
+              )}
+              onClick={handleCopy(meData.email)}
+            >
+              {meData.email}
+              {isCopy && (
+                <span className="absolute -top-4 right-4 flex items-center text-sm text-white">
+                  <CheckIcon className="h-4 w-4" />
+                  Copied
+                </span>
+              )}
+            </button>
+          </li>
         </ul>
       </footer>
     </section>
