@@ -26,16 +26,20 @@ export default function Me() {
 
   return (
     <section className="flex flex-col gap-4">
-      <header>
-        <h1 className="text-base font-medium">{meData.name}</h1>
-        <h2 className="text-sm text-muted-foreground">{meData.role}</h2>
+      <header data-animate className="mb-4">
+        <h1 className="font-geist text-base font-medium" data-animate>
+          {meData.name}
+        </h1>
+        <h2 className="text-sm text-muted-foreground" data-animate>
+          {meData.role}
+        </h2>
       </header>
 
-      <div>
+      <div style={{ '--stagger': '1' }} data-animate>
         <Mdx className="max-w-[60ch] text-pretty  text-base leading-7 text-foreground">{meData.aboutMe}</Mdx>
       </div>
 
-      <footer>
+      <footer data-animate style={{ '--stagger': '2' }}>
         <ul className="flex flex-wrap gap-4">
           {meData.socials.map((social) => (
             <li key={social.name}>

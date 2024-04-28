@@ -24,7 +24,7 @@ const projectsData = {
 
 export const Projects = () => {
   return (
-    <main className="flex flex-col gap-4">
+    <main className="flex flex-col gap-4" data-animate style={{ '--stagger': '5' }}>
       <header>
         <h2 className="text-base text-muted-foreground">Proyectos</h2>
       </header>
