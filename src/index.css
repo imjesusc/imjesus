@@ -51,20 +51,116 @@
 
 @layer base {
   * {
-    @apply border-border relative;
+    @apply relative border-border;
   }
 
   html {
     @apply scroll-smooth;
     color-scheme: dark;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background font-geist text-foreground;
   }
 
   @font-face {
     font-family: 'geist';
     src: url('/src/assets/fonts/geist.woff2') format('woff2');
+  }
+
+  .blur {
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    pointer-events: none;
+
+    position: sticky;
+    width: 100vw;
+    height: 96px;
+    z-index: 50;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    opacity: 0.95;
+    -webkit-mask-image: linear-gradient(to bottom, black 25%, transparent);
+    mask-image: linear-gradient(to bottom, black 25%, transparent);
+    top: 0;
+    margin-bottom: calc(-1 * 96px);
+  }
+
+  .blur:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, var(--background), transparent);
+  }
+
+  .gridLine {
+    @apply h-[1px] w-full;
+
+    --background: transparent;
+    --color: hsl(240 5% 64.9%/0.5);
+    --height: 1px;
+    --width: 5px;
+    --fade-stop: 90%;
+    /* Bleed in or out from the container */
+    background: linear-gradient(to right, var(--color), var(--color) 50%, transparent 0, transparent);
+    background-size: var(--width) var(--height);
+
+    /* Fade out the edges */
+    mask-composite: exclude;
+    mask: linear-gradient(to left, var(--background) var(--fade-stop), transparent),
+      linear-gradient(to right, var(--background) var(--fade-stop), transparent), linear-gradient(black, black);
+    -webkit-mask: linear-gradient(to left, var(--background) var(--fade-stop), transparent),
+      linear-gradient(to right, var(--background) var(--fade-stop), transparent), linear-gradient(black, black);
+  }
+
+  .light {
+    width: 1px;
+    height: 1px;
+    border-radius: 9999px;
+    position: relative;
+    transition: transform var(--transition-duration) ease;
+
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      width: inherit;
+      height: inherit;
+      border-radius: inherit;
+      transition: opacity var(--transition-duration) ease;
+    }
+
+    &:before {
+      /* Medium */
+      background: #3291ff;
+      box-shadow: 0px 0px 2px 1px rgba(50, 145, 255, 0.25);
+    }
+
+    &:after {
+      /* High */
+      background: #ffffff;
+      box-shadow:
+        0px 0px 1px 1px rgba(50, 145, 255, 0.8),
+        0px 0px 2px 1px rgba(50, 145, 255, 0.25);
+    }
+
+    &[data-state='off'] {
+      background: #707070;
+    }
+
+    &[data-state='medium']:before {
+      opacity: 1;
+    }
+
+    &[data-state='high']:after {
+      opacity: 1;
+    }
   }
 }
