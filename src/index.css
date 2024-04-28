@@ -63,12 +63,17 @@
   }
 
   body {
-    @apply bg-background font-geist text-foreground;
+    @apply font-x overflow-x-hidden  text-foreground;
   }
 
   @font-face {
     font-family: 'geist';
     src: url('/src/assets/fonts/geist.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'X';
+    src: url('/src/assets/fonts/X-Regular.woff2') format('woff2');
   }
 
   .blur {
@@ -89,6 +94,13 @@
     mask-image: linear-gradient(to bottom, black 25%, transparent);
     top: 0;
     margin-bottom: calc(-1 * 96px);
+  }
+
+  .blur:last-child {
+    bottom: 0;
+    margin-top: calc(-1 * 96px);
+    -webkit-mask-image: linear-gradient(to top, black 25%, transparent);
+    mask-image: linear-gradient(to top, black 25%, transparent);
   }
 
   .blur:after {
@@ -162,5 +174,13 @@
     &[data-state='high']:after {
       opacity: 1;
     }
+  }
+
+  a {
+    @apply gap-2 underline decoration-muted-foreground/50 decoration-1 underline-offset-[3px] transition-colors hover:decoration-muted-foreground;
+  }
+
+  code {
+    @apply font-x truncate rounded-md bg-[#282828] px-1 text-foreground;
   }
 }
