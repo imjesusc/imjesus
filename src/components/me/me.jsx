@@ -11,6 +11,10 @@ const meData = {
   email: 'imjesus.ds@gmail.com',
   socials: [
     {
+      name: ' Currículum',
+      url: '/jesus-cerdan-resume.pdf'
+    },
+    {
       name: 'Github',
       url: 'https://github.com/imjesusc'
     },
