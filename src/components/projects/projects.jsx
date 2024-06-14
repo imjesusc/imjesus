@@ -18,6 +18,11 @@ const projectsData = {
       description: `Clone de Spotify, construido con <a href="https://reactjs.org/" target="_blank">React</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">JavaScript</a>, <a href="https://docs.pmnd.rs/zustand/getting-started/introduction" target="_blank">Zustand</a>, <a href="https://tailwindcss.com/" target="_blank">Tailwind</a> y la <a href="https://console.cloud.google.com/marketplace/product/google/youtube.googleapis.com" target="_blank">API de YouTube</a>. Inspirado en
       <a target="_blank" href="https://spotify-astro-transitions.vercel.app/">Spotify Clone with Astro View Transitions</a>. `,
       link: 'https://spotify-clone-imjesusc.vercel.app/'
+    },
+    {
+      name: 'My Courses App',
+      description: `My Courses App es una plataforma web que recopila cursos gratuitos de YouTube, y los organiza por categorías. Esta construcido con <a href="https://nextjs.org/" target="_blank">Next.js</a>,  <a href="https://www.typescriptlang.org/">TypeScript</a> y la <a href="https://console.cloud.google.com/marketplace/product/google/youtube.googleapis.com" target="_blank">API de YouTube</a>.`,
+      link: 'https://my-courses-app.vercel.app/'
     }
   ]
 }
@@ -29,7 +34,7 @@ export const Projects = () => {
         <h2 className="text-base text-muted-foreground">Proyectos</h2>
       </header>
 
-      <div className="grid gap-4 tablet:grid-cols-3">
+      <div className="grid gap-4 tablet:grid-cols-3 tablet:gap-y-6">
         {projectsData.projects.map((project) => (
           <ProjectCard
             key={project.name}
